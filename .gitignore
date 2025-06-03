@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git
+.mypy_cache
+.pytest_cache
+.hypothesis
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dataset (too large for GitHub)
+archive/
+data/
+DIV2K_train_HR/
+DIV2K_valid_HR/
+*.zip
+*.tar
+*.gz
+
+# Model checkpoints (large files)
+*.pth
+*.pt
+*.h5
+*.ckpt
+checkpoints/
+improved_training/checkpoints/
+models/*.pth
+
+# Generated outputs
+results/
+results_best_model/
+evaluation_results/
+improved_training/samples/
+generated/
+outputs/
+temp/
+*.png
+*.jpg
+*.jpeg
+
+# Training logs
+logs/
+runs/
+wandb/
+*.json
+training_history.json
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
