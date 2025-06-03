@@ -304,7 +304,7 @@ def super_resolve_image(model_path, lr_image_path, output_path, device='cuda'):
     
     # Load model
     model = RDBNet(in_nc=3, out_nc=3, nf=64, nb=23, gc=32, scale=4)
-    checkpoint = torch.load(model_path, map_location=device)
+    checkpoint = torch.load(model_path, map_location=device, weights_only=False)
     
     if 'generator_state_dict' in checkpoint:
         model.load_state_dict(checkpoint['generator_state_dict'])

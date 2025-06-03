@@ -86,7 +86,8 @@ def load_model(model_path, device='cuda'):
     model = RDBNet(in_nc=3, out_nc=3, nf=64, nb=23, gc=32, scale=4)
     
     try:
-        checkpoint = torch.load(model_path, map_location=device)
+        # PyTorch 2.6+ fix - weights_only=False for compatibility
+        checkpoint = torch.load(model_path, map_location=device, weights_only=False)
         
         if 'generator_state_dict' in checkpoint:
             model.load_state_dict(checkpoint['generator_state_dict'])
@@ -96,7 +97,15 @@ def load_model(model_path, device='cuda'):
             
     except Exception as e:
         print(f"Error loading model: {e}")
-        return None
+        print("Trying alternative loading method...")
+        try:
+            # Alternative method for older checkpoints
+            checkpoint = torch.load(model_path, map_location=device, weights_only=False)
+            model.load_state_dict(checkpoint, strict=False)
+            print("Model loaded with strict=False")
+        except Exception as e2:
+            print(f"Alternative loading also failed: {e2}")
+            return None
         
     model = model.to(device)
     model.eval()
@@ -144,7 +153,7 @@ def main():
     parser = argparse.ArgumentParser(description='ESRGAN Super Resolution')
     parser.add_argument('--input', '-i', type=str, required=True, help='Input image path')
     parser.add_argument('--output', '-o', type=str, required=True, help='Output image path')
-    parser.add_argument('--model', '-m', type=str, default='checkpoints/esrgan_final.pth', 
+    parser.add_argument('--model', '-m', type=str, default='improved_training/checkpoints/esrgan_final.pth', 
                        help='Model checkpoint path')
     parser.add_argument('--device', type=str, default='auto', choices=['auto', 'cuda', 'cpu'],
                        help='Device to use')
@@ -179,8 +188,10 @@ def main():
     if model is None:
         return
     
-    # Create output directory
-    os.makedirs(os.path.dirname(args.output), exist_ok=True)
+    # Create output directory if needed
+    output_dir = os.path.dirname(args.output)
+    if output_dir:  # Only create directory if there's actually a path
+        os.makedirs(output_dir, exist_ok=True)
     
     # Super resolve
     result = super_resolve_image(model, device, args.input, args.output)
