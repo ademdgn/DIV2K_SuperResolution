@@ -33,7 +33,7 @@ This project implements a **custom GAN model** that can take low-resolution imag
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/ESRGAN-SuperRes
+git clone https://github.com/ademdgn/ESRGAN-SuperRes
 cd ESRGAN-SuperRes
 ```
 
