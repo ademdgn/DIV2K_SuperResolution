@@ -27,11 +27,6 @@ This project implements a **custom GAN model** that can take low-resolution imag
 | ![LR Image](demo/input_low_res.jpg) | ![SR Image](demo/output_super_res.jpg) |
 | 256 × 256 pixels | **1024 × 1024 pixels** |
 
-| Original | Enhanced |
-|:--------:|:--------:|
-| ![Input 1](demo/before_1.jpg) | ![Output 1](demo/after_1.jpg) |
-| ![Input 2](demo/before_2.jpg) | ![Output 2](demo/after_2.jpg) |
-
 *My custom ESRGAN model successfully enhances details, textures, and overall image quality!*
 
 ## 🚀 Quick Start
@@ -120,7 +115,7 @@ save_interval = 10
 
 | Metric | Score |
 |--------|-------|
-| PSNR   | 25.3 dB |
+| PSNR   | 33.1 dB |
 | SSIM   | 0.777 |
 | Training Time | ~12 hours (RTX 3080) |
 | Inference Speed | ~2 seconds/image |

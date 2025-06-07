@@ -73,7 +73,7 @@ def quick_enhance(input_path, output_path, model_path):
 
 if __name__ == "__main__":
     # Simple usage
-    input_img = "results_best_model/generated_sr/0801.png"
+    input_img = "test_images/airplane00.jpg"
     output_img = "enhanced_image.jpg" 
     model_file = "improved_training/checkpoints/esrgan_epoch_86_best.pth"
     
